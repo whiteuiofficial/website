@@ -1,0 +1,293 @@
+:root {
+  --void: #05050a;
+  --panel: #0d0d16;
+  --text-primary: #f5f5fa;
+  --text-muted: #8b8b9e;
+  --border: rgba(245, 245, 250, 0.1);
+
+  --accent-violet: #7c6cf6;
+  --accent-blue: #38bdf8;
+  --accent-pink: #f472b6;
+
+  --font-script: 'Beau Rivage', cursive;
+  --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--void);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Grain texture overlay ---------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Ambient gradient blobs ---------- */
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(90px);
+  z-index: 0;
+  will-change: transform;
+  opacity: 0.55;
+}
+
+.blob-1 {
+  width: 42vw;
+  height: 42vw;
+  max-width: 560px;
+  max-height: 560px;
+  top: -10%;
+  left: -8%;
+  background: radial-gradient(circle at 30% 30%, var(--accent-violet), transparent 70%);
+  animation: drift1 22s ease-in-out infinite;
+}
+
+.blob-2 {
+  width: 38vw;
+  height: 38vw;
+  max-width: 500px;
+  max-height: 500px;
+  bottom: -12%;
+  right: -6%;
+  background: radial-gradient(circle at 60% 40%, var(--accent-blue), transparent 70%);
+  animation: drift2 26s ease-in-out infinite;
+}
+
+.blob-3 {
+  width: 30vw;
+  height: 30vw;
+  max-width: 420px;
+  max-height: 420px;
+  top: 40%;
+  left: 55%;
+  background: radial-gradient(circle at 50% 50%, var(--accent-pink), transparent 70%);
+  animation: drift3 30s ease-in-out infinite;
+  opacity: 0.35;
+}
+
+@keyframes drift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(6vw, 8vh) scale(1.1); }
+}
+@keyframes drift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-5vw, -6vh) scale(1.08); }
+}
+@keyframes drift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-4vw, 5vh) scale(0.95); }
+}
+
+/* ---------- Stage / content ---------- */
+.stage {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  gap: 22px;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.wordmark {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(3.5rem, 12vw, 8rem);
+  line-height: 1;
+  padding: 0 0 0.15em;
+
+  background: linear-gradient(
+    100deg,
+    var(--accent-violet) 0%,
+    var(--accent-blue) 45%,
+    var(--accent-pink) 80%,
+    var(--accent-violet) 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: hueShift 10s ease-in-out infinite;
+}
+
+@keyframes hueShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.tagline {
+  font-size: clamp(0.85rem, 1.6vw, 1rem);
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  margin-top: -6px;
+}
+
+/* ---------- Notify form ---------- */
+.notify-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.notify-input {
+  flex: 1;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.notify-input::placeholder {
+  color: var(--text-muted);
+}
+
+.notify-input:focus {
+  border-color: var(--accent-blue);
+}
+
+.notify-btn {
+  position: relative;
+  border: none;
+  border-radius: 10px;
+  padding: 13px 20px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--void);
+  cursor: pointer;
+  background: linear-gradient(100deg, var(--accent-violet), var(--accent-blue), var(--accent-pink));
+  background-size: 220% 100%;
+  transition: background-position 0.4s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.notify-btn:hover {
+  background-position: 100% 0;
+}
+
+.notify-btn:active {
+  transform: scale(0.97);
+}
+
+.notify-btn:focus-visible,
+.notify-input:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+.status {
+  min-height: 1.2em;
+  font-size: 0.82rem;
+  color: var(--accent-blue);
+}
+
+/* ---------- Socials ---------- */
+.socials {
+  display: flex;
+  gap: 22px;
+  margin-top: 8px;
+}
+
+.social-link {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.social-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 1px;
+  background: var(--accent-blue);
+  transition: width 0.25s ease;
+}
+
+.social-link:hover {
+  color: var(--text-primary);
+}
+
+.social-link:hover::after {
+  width: 100%;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .blob,
+  .wordmark {
+    animation: none !important;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 480px) {
+  .notify-form {
+    flex-direction: column;
+  }
+  .notify-btn {
+    width: 100%;
+  }
+  .socials {
+    gap: 16px;
+  }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>White UI — Coming Soon</title>
+<meta name="description" content="White UI — Design, Development & AI Automation. Launching soon.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="grain"></div>
+
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <main class="stage">
+
+    <span class="eyebrow">Launching Soon</span>
+
+    <h1 class="wordmark">White UI</h1>
+
+    <p class="tagline">Design. Development. AI Automation.</p>
+
+    <form class="notify-form" id="notifyForm" novalidate>
+      <input
+        type="email"
+        id="emailInput"
+        class="notify-input"
+        placeholder="you@email.com"
+        required
+        aria-label="Email address"
+      >
+      <button type="submit" class="notify-btn">
+        <span class="btn-label">Notify me</span>
+      </button>
+    </form>
+
+    <p class="status" id="statusMsg" role="status" aria-live="polite"></p>
+
+    <div class="socials">
+      <a href="#" class="social-link" aria-label="Instagram" data-social="instagram">Instagram</a>
+      <a href="#" class="social-link" aria-label="LinkedIn" data-social="linkedin">LinkedIn</a>
+      <a href="#" class="social-link" aria-label="X (Twitter)" data-social="x">X</a>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <span>&copy; <span id="year"></span> White UI</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
